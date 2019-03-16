@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_trend"
+        android:title="@string/health"/>
+
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/ic_shield"
+        android:title="@string/emergency_warning"/>
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/ic_monitor"
+        android:title="@string/time_monitoring"/>
+
+</menu>

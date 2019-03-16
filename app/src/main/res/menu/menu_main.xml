@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.tokyonth.carnet.IWalk">
+    <item
+        android:id="@+id/action_push"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_push_msg"
+        android:title="@string/action_push"
+        app:showAsAction="always"
+        app:actionProviderClass="com.tokyonth.carnet.ui.BadgeActionProvider"/>
+</menu>

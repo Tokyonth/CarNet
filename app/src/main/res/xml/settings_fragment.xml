@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="categoryOne"
+        android:title="基础设置">
+
+        <Preference
+            android:key="prefAndroid"
+            android:title="数据"
+            android:summary="数据接口"/>
+
+        <CheckBoxPreference
+            android:key="prefCheckBoxTwo"
+            android:title="兼容模式"
+            android:summaryOn="兼容"
+            android:summaryOff="正常"/>
+
+        <EditTextPreference
+            android:key="prefEditText"
+            android:title="设置ID"
+            android:summary="设备ID"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="prefCategoryTwo"
+        android:title="硬件" >
+
+        <SwitchPreference
+            android:key="prefSwitch"
+            android:title="启用效率模式"
+            android:summaryOn="效率"
+            android:summaryOff="正常"
+            android:shadowColor="@color/colorAccent"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
