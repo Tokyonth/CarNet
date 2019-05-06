@@ -16,102 +16,118 @@
 
         <com.tokyonth.carnet.ui.widget.ClearEditText
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/rect_fillet_bg"
             android:drawableLeft="@drawable/ic_user_ds"
             android:singleLine="true"
-            android:drawableRight="@drawable/ic_delete_selector"
+            android:drawableRight="@drawable/ic_reg_delete_selector"
             android:hint="输入用户名"
+            android:textColorHint="@android:color/white"
+            android:textColor="@android:color/white"
             android:inputType="none"
             android:maxLines="1"
             android:ems="10"
-            android:padding="8dp"
+            android:padding="10dp"
             android:drawablePadding="8dp"
-            android:id="@+id/reg_account"
-            android:layout_height="wrap_content" />
+            android:id="@+id/reg_account" />
 
         <com.tokyonth.carnet.ui.widget.ClearEditText
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/rect_fillet_bg"
             android:layout_marginTop="16dp"
             android:drawableLeft="@drawable/ic_email_ds"
             android:singleLine="true"
-            android:drawableRight="@drawable/ic_delete_selector"
+            android:drawableRight="@drawable/ic_reg_delete_selector"
             android:hint="输入邮箱"
             android:layout_below="@id/reg_account"
+            android:textColorHint="@android:color/white"
+            android:textColor="@android:color/white"
             android:inputType="none"
             android:maxLines="1"
             android:ems="10"
-            android:padding="8dp"
+            android:padding="10dp"
             android:drawablePadding="8dp"
-            android:id="@+id/reg_email"
-            android:layout_height="wrap_content" />
+            android:id="@+id/reg_email" />
 
         <com.tokyonth.carnet.ui.widget.ClearEditText
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/rect_fillet_bg"
-            android:layout_marginTop="16dp"
             android:drawableLeft="@drawable/ic_pwd_ds"
+            android:drawableRight="@drawable/ic_reg_delete_selector"
+            android:layout_marginTop="16dp"
             android:singleLine="true"
-            android:drawableRight="@drawable/ic_delete_selector"
             android:hint="输入密码"
             android:layout_below="@id/reg_email"
-            android:inputType="none"
+            android:inputType="textPassword"
+            android:textColorHint="@android:color/white"
+            android:textColor="@android:color/white"
             android:maxLines="1"
             android:ems="10"
-            android:padding="8dp"
+            android:padding="10dp"
             android:drawablePadding="8dp"
-            android:id="@+id/reg_pwd"
-            android:layout_height="wrap_content" />
+            android:id="@+id/reg_pwd" />
 
         <com.tokyonth.carnet.ui.widget.ClearEditText
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/rect_fillet_bg"
-            android:layout_marginTop="16dp"
             android:drawableLeft="@drawable/ic_pwd_confirm_ds"
+            android:drawableRight="@drawable/ic_reg_delete_selector"
+            android:layout_marginTop="16dp"
             android:singleLine="true"
-            android:drawableRight="@drawable/ic_delete_selector"
             android:hint="确认密码"
+            android:textColorHint="@android:color/white"
+            android:textColor="@android:color/white"
             android:layout_below="@id/reg_pwd"
-            android:inputType="none"
+            android:inputType="textPassword"
             android:maxLines="1"
             android:ems="10"
-            android:padding="8dp"
+            android:padding="10dp"
             android:drawablePadding="8dp"
-            android:id="@+id/pwd_confirm"
-            android:layout_height="wrap_content" />
+            android:id="@+id/pwd_confirm" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/pwd_confirm"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
             android:layout_margin="8dp"
-            android:id="@+id/ll">
+            android:id="@+id/rl">
 
             <CheckBox
+                android:id="@+id/cb_agreement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:theme="@style/CheckBoxTheme"
+                android:textColor="@android:color/white"
                 android:text="同意用户协议"/>
 
             <TextView
+                android:id="@+id/tv_agreement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
+                android:textColor="@android:color/white"
+                android:layout_marginRight="2dp"
                 android:text="查看相关协议" />
 
         </RelativeLayout>
 
         <com.dx.dxloadingbutton.lib.LoadingButton
+            android:layout_below="@id/rl"
             android:id="@+id/btn_register"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ll"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            app:lb_cornerRadius="16"
             app:lb_resetAfterFailed="true"
-            app:lb_btnColor="#9F9F9F"
-            app:lb_btnText="注册" />
+            app:lb_btnColor="#64ffffff"
+            app:lb_btnText="@string/register" />
 
     </RelativeLayout>
 

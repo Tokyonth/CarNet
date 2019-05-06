@@ -26,10 +26,8 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.about);
+        setContentView(R.layout.activity_about);
         InitView();
-        setSupportActionBar(toolbar);
-        setTitle("");
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         if(actionBar != null){
             actionBar.setHomeButtonEnabled(true);
@@ -59,6 +57,8 @@ public class AboutActivity extends AppCompatActivity {
     private void InitView() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         listView = (ListView) findViewById(R.id.project_list);
+        setSupportActionBar(toolbar);
+        setTitle("");
     }
 
     @Override

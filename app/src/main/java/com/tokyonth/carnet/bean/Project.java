@@ -2,8 +2,8 @@ package com.tokyonth.carnet.bean;
 
 public class Project {
 
-    String name;
-    String url;
+    private String name;
+    private String url;
 
     public Project(String name,String url){
         this.name = name;

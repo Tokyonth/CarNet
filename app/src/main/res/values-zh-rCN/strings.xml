@@ -19,6 +19,7 @@
     <string name="currency">通用</string>
     <string name="sign_out">退出登录</string>
     <string name="login">登录</string>
+    <string name="register">注册</string>
     <string name="account">账户</string>
     <string name="password">密码</string>
     <string name="no_account">没有账户？</string>
@@ -27,6 +28,7 @@
     <string name="action_exit">退出</string>
     <string name="user_name">用户名</string>
     <string name="main_msg">主要信息</string>
+    <string name="main">主要功能</string>
     <string name="android_version">安卓版本：</string>
     <string name="android_api">API级别：</string>
     <string name="save_password">保存密码</string>
@@ -40,4 +42,18 @@
     <string name="health">健康情况</string>
     <string name="emergency_warning">紧急预警</string>
     <string name="time_monitoring">实时监测</string>
+    <string name="user">用户</string>
+    <string name="expert_advice">专家建议</string>
+    <string name="detailed_information">详细信息</string>
+    <string name="retrieve_password"><u>忘记密码</u></string>
+    <string name="large_text">安全行车建议：\n\n
+        1.保持和锻炼耐心\n\n
+        许多事故都是由急于从A点到B点的急躁车主引起的。虽然时间在旅行时肯定是一个有效的考虑因素，但安全性更为重要。 毕竟，没有了生命，也就没有了时间，节省再多时间也是假的。\n\n
+        2.规划出行路线\n\n
+        提前计划好你的旅行路线，你在驾驶时就不至于纠结到底该去哪，同时也能节省时间和避免不必要的麻烦。\n\n
+        3.避免分心\n\n
+        发送短信并不是驾驶员在操作车辆时需要避免分心的唯一方式。 行车时更换CD，使用手机，进食和与乘客互动，都应该特别注意和引起重视，否则很容易引发车祸。\n\n
+        4.适当的车辆维护\n\n
+        注意确保你的汽车保持良好的工作状态。 这包括保持液体最佳状态，执行计划发动机维护，保证轮胎有足够的空气，并确保车辆的外部灯在任何时候都能正常工作。\n\n
+    </string>
 </resources>

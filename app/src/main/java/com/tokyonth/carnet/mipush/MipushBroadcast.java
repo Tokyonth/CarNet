@@ -79,31 +79,31 @@ public class MipushBroadcast extends PushMessageReceiver {
                 //System.out.println("推送服务注册成功");
                 Log.d(TAG,"推送服务注册成功");
                 //广播是否已经注册了,2代表已注册
-                if(BaseActivity.broadcastNet_State == 2){
+                if(PushBaseActivity.broadcastNet_State == 2){
                     //通过回调注销广播
-                    Message msg = BaseActivity.AppHandler.obtainMessage();
+                    Message msg = PushBaseActivity.AppHandler.obtainMessage();
                     msg.what = 3;
-                    BaseActivity.AppHandler.sendMessage(msg);
+                    PushBaseActivity.AppHandler.sendMessage(msg);
                     //设置状态量:3 = 推送服务注册成功;1 = 广播还未注册(已被注销)
-                    BaseActivity.pushState = 3;
-                    BaseActivity.broadcastNet_State =1 ;
+                    PushBaseActivity.pushState = 3;
+                    PushBaseActivity.broadcastNet_State =1 ;
                 }else{
                     //System.out.println("结束");
                     Log.d(TAG,"结束");
-                    BaseActivity.pushState = 3;
-                    BaseActivity.broadcastNet_State =1 ;
+                    PushBaseActivity.pushState = 3;
+                    PushBaseActivity.broadcastNet_State =1 ;
                 }
             } else {
                 //打印日志：注册失败
                 //System.out.println("注册失败");
                 Log.d(TAG,"注册失败");
-                BaseActivity.pushState = 2;
+                PushBaseActivity.pushState = 2;
                 //通过回调延时注册广播
                 //System.out.println("回调延时注册广播");
                 Log.d(TAG,"回调延时注册广播");
-                Message msg = BaseActivity.AppHandler.obtainMessage();
+                Message msg = PushBaseActivity.AppHandler.obtainMessage();
                 msg.what = 1;
-                BaseActivity.AppHandler.sendMessage(msg);
+                PushBaseActivity.AppHandler.sendMessage(msg);
             }
         } else {
             //System.out.println("其他情况"+message.getReason());

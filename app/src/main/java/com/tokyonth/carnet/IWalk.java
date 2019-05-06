@@ -12,22 +12,23 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.tokyonth.carnet.activity.AboutActivity;
 import com.tokyonth.carnet.activity.CloudActivity;
 import com.tokyonth.carnet.activity.CurrencyActivity;
 import com.tokyonth.carnet.activity.PushActivity;
-import com.tokyonth.carnet.activity.SettingsPrenference;
+import com.tokyonth.carnet.activity.SettingsPreference;
+import com.tokyonth.carnet.activity.UserActivity;
 import com.tokyonth.carnet.fragment.EmergencyWarning;
 import com.tokyonth.carnet.fragment.HealthDetails;
 import com.tokyonth.carnet.fragment.Monitoring;
@@ -36,12 +37,14 @@ import com.tokyonth.carnet.ui.widget.CustomDialog;
 import com.tokyonth.carnet.ui.widget.NetImageView;
 import com.tokyonth.carnet.utils.SPUtils;
 
-public class IWalk extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
+public class IWalk extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
 
     private Toolbar toolbar;
     private FloatingActionButton fab;
     private BottomNavigationView navigation;
     private NetImageView imageView;
+    private ImageView head_portrait;
+    private TextView username;
 
     private HealthDetails home;
     private EmergencyWarning dashboard;
@@ -59,45 +62,18 @@ public class IWalk extends AppCompatActivity implements NavigationView.OnNavigat
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.iwalk);
-        new SPUtils(this,"app_conf");
         InitView();
-        InitClick();
+        new SPUtils(this,"app_conf");
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         initFragmentHome();
-        BootDisplay();
-    }
-
-    private void BootDisplay() {
-        Boolean tag = (Boolean) SPUtils.getData("boot_display_dialog",false);
-        if (!tag) {
-            customDialog = new CustomDialog(this);
-            customDialog.setTitle("提示");
-            customDialog.setMessage("欢迎使用 i 行！");
-            customDialog.setYesOnclickListener("确定", new CustomDialog.onYesOnclickListener() {
-                @Override
-                public void onYesClick() {
-                    customDialog.dismiss();
-                }
-            });
-            customDialog.setNoOnclickListener("不再显示", new CustomDialog.onNoOnclickListener() {
-                @Override
-                public void onNoClick() {
-                    SPUtils.putData("boot_display_dialog", true);
-                    customDialog.dismiss();
-                }
-            });
-            customDialog.setCanceledOnTouchOutside(false);
-            customDialog.show();
-        }
+        getPermission();
     }
 
     private void InitView() {
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View view = inflater.inflate(R.layout.nav_header_main, null);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         imageView = (NetImageView) findViewById(R.id.main_pic);
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -106,14 +82,20 @@ public class IWalk extends AppCompatActivity implements NavigationView.OnNavigat
         model_click = (LinearLayout) findViewById(R.id.setting_model);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-    }
 
-    private void InitClick() {
+        View head_view = navigationView.inflateHeaderView(R.layout.nav_header_main);
+        head_portrait = (ImageView) head_view.findViewById(R.id.iv_head_portrait);
+        username = (TextView) head_view.findViewById(R.id.user_name);
+
         settings_click.setOnClickListener(this);
         model_click.setOnClickListener(this);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         fab.setOnClickListener(this);
         navigationView.setNavigationItemSelectedListener(this);
+        head_portrait.setOnClickListener(this);
+
+        Intent intent = getIntent();
+        username.setText(intent.getStringExtra("User_Name"));
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -159,7 +141,7 @@ public class IWalk extends AppCompatActivity implements NavigationView.OnNavigat
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.nav_subject_info) {
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_cloud_services) {
             Intent intent = new Intent();
@@ -248,7 +230,7 @@ public class IWalk extends AppCompatActivity implements NavigationView.OnNavigat
         Transition slide = TransitionInflater.from(IWalk.this).inflateTransition(R.transition.slide);
         switch (v.getId()) {
             case R.id.setting_click:
-                intent.setClass(IWalk.this,SettingsPrenference.class);
+                intent.setClass(IWalk.this,SettingsPreference.class);
                 getWindow().setEnterTransition(slide);
                 startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(IWalk.this).toBundle());
                 break;
@@ -257,6 +239,10 @@ public class IWalk extends AppCompatActivity implements NavigationView.OnNavigat
                 break;
             case R.id.setting_model:
 
+                break;
+            case R.id.iv_head_portrait:
+                intent.setClass(IWalk.this,UserActivity.class);
+                startActivity(intent);
                 break;
         }
     }

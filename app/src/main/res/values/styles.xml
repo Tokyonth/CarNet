@@ -53,4 +53,9 @@
         <item name="android:windowExitAnimation">@anim/animator_dialog_out</item>
     </style>
 
+    <style name="CheckBoxTheme" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+    </style>
+
 </resources>

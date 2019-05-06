@@ -10,6 +10,19 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
+    <!--用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!--用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!--这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <!--用于读取手机当前的状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!--用于申请调用A-GPS模块-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <!--用于申请获取蓝牙信息进行室内定位-->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
     <permission
         android:name="com.tokyonth.carnet.permission.MIPUSH_RECEIVE"
@@ -19,7 +32,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name=".mipush.BaseActivity"
+        android:name=".mipush.PushBaseActivity"
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
@@ -28,10 +41,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="b66f29976fbf9dd2d0afbda513f848f4">
+        </meta-data>
         <activity
             android:name=".App"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.MainAct">
+            android:theme="@style/WalkAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,7 +64,7 @@
             android:label="@string/action_push"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.SettingsPrenference"
+            android:name=".activity.SettingsPreference"
             android:label="@string/action_settings"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -57,16 +74,26 @@
         <activity
             android:name=".activity.CloudActivity"
             android:label="@string/cloud_services"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/WalkAppTheme" />
         <activity
             android:name=".activity.CurrencyActivity"
             android:label="@string/currency"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.UserActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.RegisterActivity"
-            android:theme="@style/WalkAppTheme"/>
+            android:label="@string/user"
+            android:theme="@style/WalkAppTheme" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:label="@string/user_registration"
+            android:theme="@style/WalkAppTheme" />
+        <activity
+            android:name=".activity.ScrollingActivity"
+            android:label="@string/expert_advice"
+            android:theme="@style/WalkAppTheme" />
+        <activity android:name=".activity.DataTableActivity"
+            android:label="@string/detailed_information"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <service
             android:name="com.xiaomi.push.service.XMJobService"
@@ -85,6 +112,7 @@
         <service
             android:name="com.xiaomi.mipush.sdk.MessageHandleService"
             android:enabled="true" />
+        <service android:name="com.amap.api.location.APSService"/>
 
         <receiver
             android:name=".mipush.MipushBroadcast"

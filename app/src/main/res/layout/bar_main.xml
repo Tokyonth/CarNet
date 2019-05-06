@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/head"
+                android:src="@drawable/head_image"
                 android:fitsSystemWindows="true"
                 app:layout_collapseMode="parallax" />
 
@@ -45,13 +45,25 @@
 
     <include layout="@layout/content_main" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+   <!-- <com.github.jorgecastilloprz.FABProgressCircle
+        android:id="@+id/fabProgressCircle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_refresh" />
+        app:arcColor="@color/colorPrimaryDark"
+        app:arcWidth="2dp"
+        app:finalIcon="@drawable/ic_shield">
+    -->
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            app:layout_anchor="@id/app_bar"
+            app:layout_anchorGravity="bottom|end"
+            app:srcCompat="@drawable/ic_refresh" />
+
+   <!-- </com.github.jorgecastilloprz.FABProgressCircle> -->
 
 </android.support.design.widget.CoordinatorLayout>

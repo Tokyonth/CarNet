@@ -17,6 +17,7 @@ import java.util.List;
 public class ProjectList extends ArrayAdapter<Project> {
 
     private int resourceId;
+
     public ProjectList(@NonNull Context context, int resource, @NonNull List<Project> objects) {
         super(context, resource, objects);
         resourceId = resource;

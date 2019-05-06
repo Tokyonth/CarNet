@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="26dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="添加一个联系人"/>
+
+    <com.tokyonth.carnet.ui.widget.ClearEditText
+        android:layout_width="match_parent"
+        android:background="@drawable/rect_fillet_bg"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/ic_icon_user"
+        android:singleLine="true"
+        android:drawableRight="@drawable/ic_delete_selector"
+        android:hint="输入姓名"
+        android:inputType="none"
+        android:maxLines="1"
+        android:ems="10"
+        android:padding="8dp"
+        android:drawablePadding="8dp"
+        android:layout_height="wrap_content" />
+
+    <com.tokyonth.carnet.ui.widget.ClearEditText
+        android:layout_width="match_parent"
+        android:background="@drawable/rect_fillet_bg"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/ic_icon_user"
+        android:singleLine="true"
+        android:drawableRight="@drawable/ic_delete_selector"
+        android:hint="输入号码"
+        android:inputType="none"
+        android:maxLines="1"
+        android:ems="10"
+        android:padding="8dp"
+        android:drawablePadding="8dp"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -3,20 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_subject_info"
-            android:icon="@drawable/ic_hierarchy"
-            android:title="@string/subject_info" />
-        <item
-            android:id="@+id/nav_cloud_services"
-            android:icon="@drawable/ic_cloud"
-            android:title="@string/cloud_services" />
-        <item
-            android:id="@+id/nav_currency"
-            android:icon="@drawable/ic_introduce"
-            android:title="@string/currency" />
-    </group>
+    <item android:title="@string/main">
+        <menu>
+            <item
+                android:id="@+id/nav_subject_info"
+                android:icon="@drawable/ic_hierarchy"
+                android:title="@string/subject_info" />
+            <item
+                android:id="@+id/nav_cloud_services"
+                android:icon="@drawable/ic_cloud"
+                android:title="@string/cloud_services" />
+            <item
+                android:id="@+id/nav_currency"
+                android:icon="@drawable/ic_introduce"
+                android:title="@string/currency" />
+        </menu>
+    </item>
 
     <item android:title="@string/more">
         <menu>

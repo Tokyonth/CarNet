@@ -1,115 +1,138 @@
 package com.tokyonth.carnet.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 
 import com.tokyonth.carnet.R;
-import com.tokyonth.carnet.bean.CompositeIndexBean;
-import com.tokyonth.carnet.bean.IncomeBean;
-import com.tokyonth.carnet.bean.LineChartBean;
-import com.tokyonth.carnet.ui.widget.LineChartManager;
-import com.tokyonth.carnet.utils.LocalJsonAnalyzeUtil;
+import com.tokyonth.carnet.activity.DataTableActivity;
+import com.tokyonth.carnet.chart.DynamicLineChartManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HealthDetails extends Fragment {
 
-    private LineChartBean lineChartBean;
-    private List<IncomeBean> pulse_rate;//脉搏
-    private List<CompositeIndexBean> temperature;//体温
-    private List<CompositeIndexBean> blood_pressure;//血压
+    private LineChart lineChart;
+    private DynamicLineChartManager dynamicLineChartManager;
+    private List<Integer> list = new ArrayList<>(); //数据集合
+    private List<String> names = new ArrayList<>(); //折线名字集合
+    private List<Integer> colour = new ArrayList<>();//折线颜色集合
 
-    private LineChart lineChart1;
+    private Button btn1;
+    private Button btn2;
+    private Button btn3;
 
-    private LinearLayout cl_shanghai;
-    private View view_shanghai;
-
-    private LinearLayout cl_gem;
-    private View view_gem;
-
-    private LineChartManager lineChartManager1;
-
-   /* @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        UrgentAdapter adapter = new UrgentAdapter(getContext(),R.layout.contacts_list,mFoodList);
-        this.setListAdapter(adapter);
-    }*/
+    private TextView tv1;
+    private TextView tv2;
+    private TextView tv3;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_healthdetails,container,false);
-        lineChart1 = view.findViewById(R.id.lineChart);
-        cl_shanghai = view.findViewById(R.id.cl_shanghai);
-        view_shanghai = view.findViewById(R.id.view_shanghai);
-        cl_gem = view.findViewById(R.id.cl_gem);
-        view_gem = view.findViewById(R.id.view_gem);
-        lineChart1 = view.findViewById(R.id.lineChart);
-
+        View root = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_healthdetails,container,false);
+        lineChart = root.findViewById(R.id.lineChart);
+        btn1 = root.findViewById(R.id.btn_blood_more);
+        btn2 = root.findViewById(R.id.btn_temperature_more);
+        btn3 = root.findViewById(R.id.btn_pulse_more);
+        tv1 = root.findViewById(R.id.tv_pulse_msg);
+        tv2 = root.findViewById(R.id.tv_blood_msg);
+        tv3 = root.findViewById(R.id.tv_temperature_msg);
         initData();
         initView();
-        return view;
+        return root;
     }
-
 
     private void initData() {
-        //获取数据
-        lineChartBean = LocalJsonAnalyzeUtil.JsonToObject(getContext(), "line_chart.json", LineChartBean.class);
-        pulse_rate = lineChartBean.getGRID0().getResult().getClientAccumulativeRate();
-
-        temperature = lineChartBean.getGRID0().getResult().getCompositeIndexShanghai();
-        blood_pressure = lineChartBean.getGRID0().getResult().getCompositeIndexShenzhen();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                    try {
+                        Message msg = new Message();
+                        msg.what = 1;
+                        handler.sendMessage(msg);
+                        Thread.sleep(1000);
+                    }catch (InterruptedException e){ }
+                }
+            }
+        }).start();
     }
 
+    @SuppressLint("HandlerLeak")
+    Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            if (msg.what == 1) {
+                list.add((95 + (int)(Math.random() * ((115 - 95) + 1))));
+                list.add((85 + (int)(Math.random() * ((100 - 85) + 1))));
+                list.add((35 + (int)(Math.random() * ((40 - 35) + 1))));
+                dynamicLineChartManager.addEntry(list);
+                list.clear();
+            }
+        }
+    };
+
     private void initView() {
+        //折线名字
+        names.add("血压");
+        names.add("脉搏");
+        names.add("体温");
+        //折线颜色
+        colour.add(Color.parseColor("#2A8EE3"));
+        colour.add(Color.parseColor("#109D58"));
+        colour.add(Color.parseColor("#E8A140"));
 
-        lineChartManager1 = new LineChartManager(lineChart1);
-        cl_shanghai.setOnClickListener(listener);
-       // cl_shenzhen.setOnClickListener(listener);
-        cl_gem.setOnClickListener(listener);
+        dynamicLineChartManager = new DynamicLineChartManager(lineChart, names, colour);
+        dynamicLineChartManager.setYAxis(120, 30, 10);
+        dynamicLineChartManager.setDescription("");
+        dynamicLineChartManager.setMarkerView(getContext());
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //设置曲线填充色 以及 MarkerView
+                Drawable drawable = getResources().getDrawable(R.drawable.fade_blue);
+                dynamicLineChartManager.setChartFillDrawable(drawable);
+            }
+        }, 1000);
 
-        //展示图表
-        lineChartManager1.showLineChart(pulse_rate, "脉搏", getResources().getColor(R.color.blue));
-        lineChartManager1.addLine(temperature, "体温", getResources().getColor(R.color.orange));
-        lineChartManager1.addLine(blood_pressure, "血压", getResources().getColor(R.color.green));
-
-        //设置曲线填充色 以及 MarkerView
-        Drawable drawable = getResources().getDrawable(R.drawable.fade_blue);
-        lineChartManager1.setChartFillDrawable(drawable);
-        lineChartManager1.setMarkerView(getContext());
+        btn3.setOnClickListener(listener);
+        btn2.setOnClickListener(listener);
+        btn1.setOnClickListener(listener);
     }
 
     View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            Intent intent = new Intent();
             switch (view.getId()) {
-                case R.id.cl_shanghai:
-                    view_shanghai.setBackground(getResources().getDrawable(R.drawable.shape_round_orange));
-
-                    view_gem.setBackground(getResources().getDrawable(R.drawable.shape_round_green));
-                    //view_shenzhen.setBackground(getResources().getDrawable(R.drawable.shape_round_green));
-
-                    lineChartManager1.resetLine(1, temperature, "体温", getResources().getColor(R.color.orange));
+                case R.id.btn_blood_more:
+                    intent.setClass(getContext(),DataTableActivity.class);
+                    intent.putExtra("TAG","blood");
+                    startActivity(intent);
                     break;
-                case R.id.cl_gem:
-                    //view_shenzhen.setBackground(getResources().getDrawable(R.drawable.shape_round_orange));
-
-                    view_gem.setBackground(getResources().getDrawable(R.drawable.shape_round_green));
-                    view_shanghai.setBackground(getResources().getDrawable(R.drawable.shape_round_green));
-
-                    lineChartManager1.resetLine(1, blood_pressure, "血压", getResources().getColor(R.color.orange));
+                case R.id.btn_temperature_more:
+                    intent.setClass(getContext(),DataTableActivity.class);
+                    intent.putExtra("TAG","temperature");
+                    startActivity(intent);
                     break;
-
+                case R.id.btn_pulse_more:
+                    intent.setClass(getContext(),DataTableActivity.class);
+                    intent.putExtra("TAG","pulse");
+                    startActivity(intent);
+                    break;
             }
         }
     };
-
 
 }

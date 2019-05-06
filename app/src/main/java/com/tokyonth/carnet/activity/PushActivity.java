@@ -12,7 +12,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.tokyonth.carnet.R;
-import com.tokyonth.carnet.mipush.BaseActivity;
+import com.tokyonth.carnet.mipush.PushBaseActivity;
 
 public class PushActivity extends AppCompatActivity {
 
@@ -32,7 +32,7 @@ public class PushActivity extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.push_msg_list);
         String[] companies = new String[]{"你好！"};
-        ListAdapter adapter = new ArrayAdapter<String>(this, R.layout.push_list_item, R.id.title, companies);
+        ListAdapter adapter = new ArrayAdapter<>(this, R.layout.push_list_item, R.id.title, companies);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -50,11 +50,11 @@ public class PushActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         //1 = 注册失败(没网);1 = 广播还没注册
-        if (BaseActivity.pushState == 1 && BaseActivity.broadcastNet_State == 1) {
+        if (PushBaseActivity.pushState == 1 && PushBaseActivity.broadcastNet_State == 1) {
             System.out.println("在首页注册广播");
-            Message msg = BaseActivity.AppHandler.obtainMessage();
+            Message msg = PushBaseActivity.AppHandler.obtainMessage();
             msg.what = 2;
-            BaseActivity.AppHandler.sendMessage(msg);
+            PushBaseActivity.AppHandler.sendMessage(msg);
         }else{
             System.out.println("不用在首页注册广播");
         }
@@ -64,11 +64,11 @@ public class PushActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         //2 = 广播已注册
-        if (BaseActivity.broadcastNet_State == 2) {
+        if (PushBaseActivity.broadcastNet_State == 2) {
             System.out.println("在首页注销广播");
-            Message msg = BaseActivity.AppHandler.obtainMessage();
+            Message msg = PushBaseActivity.AppHandler.obtainMessage();
             msg.what = 3;
-            BaseActivity.AppHandler.sendMessage(msg);
+            PushBaseActivity.AppHandler.sendMessage(msg);
         }else{
             System.out.println("不用在首页注销广播");
         }

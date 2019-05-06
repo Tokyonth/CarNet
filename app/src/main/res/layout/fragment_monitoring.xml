@@ -4,45 +4,100 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center|top"
     android:background="@color/bg">
 
-    <include layout="@layout/meter"/>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="20dp">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="0dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
-        app:contentPadding="10dp">
+        <com.tokyonth.carnet.dial.SemicircleProgressView
+            android:id="@+id/semicircleProgressView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:semicircleSize="140dp"
+            app:semicirclebackgroundLineColor="@color/colorPrimary"
+            app:semicirclefrontLineColor="@color/colorAccent"
+            app:semicirclelineSize="8dp"
+            app:semicirclesubtitleColor="@color/colorPrimary"
+            app:semicirclesubtitleSize="15sp"
+            app:semicirclesubtitleText="Fraction"
+            app:semicircletitleColor="@color/colorAccent"
+            app:semicircletitleSize="20sp"
+            app:semicircletitleText="分数" />
+
+        </android.support.v7.widget.CardView>
+
+        <com.tokyonth.carnet.view.CustomList
+            android:id="@id/android:list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:dividerHeight="0.5dp"
+            android:drawSelectorOnTop="false" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:gravity="center">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:id="@+id/tv_title"
-            android:textStyle="bold"
-            android:text="安全建议"/>
+                <Button
+                    android:layout_weight="1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="8dp"
+                    android:id="@+id/btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/msg_btn_bg"
+                    android:textColor="#FFF"
+                    android:text="专家建议"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="16dp"
-            android:text="行车不规范，家人两行泪"/>
+                <Button
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/msg_btn_bg"
+                    android:textColor="#FFF"
+                    android:text="健康日报"/>
+
+                <Button
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/msg_btn_bg"
+                    android:textColor="#FFF"
+                    android:text="道路安全"/>
 
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="8dp"
+                    android:text="@string/large_text"
+                    android:textSize="16sp" />
+
+        </android.support.v7.widget.CardView>
 
 </LinearLayout>

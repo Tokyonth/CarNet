@@ -27,12 +27,12 @@ public class NetworkReceiver extends BroadcastReceiver {
                 System.out.println("有网了");
                 //立即回调注册
                 System.out.println("回调立即注册推送服务");
-                Message msg = BaseActivity.AppHandler.obtainMessage();
+                Message msg = PushBaseActivity.AppHandler.obtainMessage();
                 msg.what = 0;
-                BaseActivity.AppHandler.sendMessage(msg);
+                PushBaseActivity.AppHandler.sendMessage(msg);
             } else {
                 System.out.println("没网了");
-                BaseActivity.pushState = 1;
+                PushBaseActivity.pushState = 1;
             }
 
             //API大于23时使用下面的方式进行网络监听
@@ -51,14 +51,14 @@ public class NetworkReceiver extends BroadcastReceiver {
                 if (networkInfo.isConnected()) {
                     //立即回调注册
                     System.out.println("回调立即注册推送服务");
-                    Message msg = BaseActivity.AppHandler.obtainMessage();
+                    Message msg = PushBaseActivity.AppHandler.obtainMessage();
                     msg.what = 0;
-                    BaseActivity.AppHandler.sendMessage(msg);
+                    PushBaseActivity.AppHandler.sendMessage(msg);
                     break;
                 } else {
                     System.out.println("没网了");
                     //没网时设置推送服务状态量
-                    BaseActivity.pushState = 1;
+                    PushBaseActivity.pushState = 1;
                 }
             }
         }

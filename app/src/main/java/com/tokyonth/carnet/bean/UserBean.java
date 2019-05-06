@@ -4,6 +4,15 @@ public class UserBean {
 
     private String code;
     private String msg;
+    private String userName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getCode() {
         return code;

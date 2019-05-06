@@ -35,12 +35,13 @@
                 android:text="脉搏详情："/>
 
             <TextView
+                android:id="@+id/tv_pulse_msg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/btn_pulse_more"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="10dp"
-                android:text="00:00  :  58\n00:01  :  60\n" />
+                android:text="P：89 bpm\nP：94 bpm" />
 
             <Button
                 style="?android:attr/buttonBarButtonStyle"
@@ -84,12 +85,13 @@
                 android:text="体温详情："/>
 
             <TextView
+                android:id="@+id/tv_temperature_msg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="10dp"
                 android:layout_alignTop="@+id/btn_temperature_more"
-                android:text="00:00  :  58\n00:01  :  60\n" />
+                android:text="T：36.2 °C\nT：36.4 °C" />
 
             <Button
                 style="?android:attr/buttonBarButtonStyle"
@@ -133,12 +135,13 @@
                 android:text="血压详情："/>
 
             <TextView
+                android:id="@+id/tv_blood_msg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="10dp"
                 android:layout_alignTop="@+id/btn_blood_more"
-                android:text="00:00  :  58\n00:01  :  60\n" />
+                android:text="BP: 100 mmHg\nBP: 105 mmHg" />
 
             <Button
                 style="?android:attr/buttonBarButtonStyle"

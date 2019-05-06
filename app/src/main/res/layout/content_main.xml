@@ -10,7 +10,7 @@
     tools:showIn="@layout/bar_main">
 
     <include
-        layout="@layout/content_scrolling" />
+        layout="@layout/content_scrolling_main" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

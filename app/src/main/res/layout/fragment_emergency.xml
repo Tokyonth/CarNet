@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center|top"
     android:background="@color/bg">
 
     <android.support.v7.widget.CardView
@@ -16,33 +18,46 @@
         app:cardElevation="1dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        app:contentPadding="10dp">
+        app:contentPaddingLeft="10dp"
+        app:contentPaddingRight="10dp">
 
-        <LinearLayout
+        <com.tokyonth.carnet.view.CustomList
+            android:id="@android:id/list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:baselineAligned="true"
-            android:orientation="horizontal">
-
-            <ListView
-                android:id="@android:id/list"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawSelectorOnTop="false"
-                android:dividerHeight="0.5dp"/>
-
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:drawSelectorOnTop="false"
+            android:dividerHeight="0.5dp"/>
 
     </android.support.v7.widget.CardView>
 
     <Button
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:layout_below="@id/card"
+        android:background="@drawable/msg_btn_bg"
         android:id="@+id/add_contacts"
+        android:textColor="@android:color/white"
         android:text=" + 添加联系人"/>
 
-</RelativeLayout>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="1dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+
+        <com.amap.api.maps2d.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="420dp" />
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

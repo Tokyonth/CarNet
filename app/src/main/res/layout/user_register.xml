@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@drawable/reg_bg_image"
     tools:context=".activity.RegisterActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -19,21 +20,20 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="200dp"
             android:fitsSystemWindows="true"
-            android:background="@drawable/material_8"
             app:popupTheme="@style/AppTheme.PopupOverlay" >
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fitsSystemWindows="true"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="68dp"
                 android:textColor="#f5f5f5"
                 android:textStyle="bold"
                 android:textSize="28sp"
                 android:gravity="center"
-                android:text="注册"/>
+                android:text="@string/register"/>
 
         </android.support.v7.widget.Toolbar>
 
